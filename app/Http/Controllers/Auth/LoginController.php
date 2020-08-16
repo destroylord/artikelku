@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Symfony\Component\HttpFoundation\Request;
 
 class LoginController extends Controller
 {
@@ -40,5 +41,14 @@ class LoginController extends Controller
     public function username()
     {
         return 'username';
+    }
+
+    // cek siapakah yang login, admin atau user biasa
+    protected function authenticated(Request $request, $user)
+    {
+        if ($user->hasRole('admin')) {
+            return redirect()->route('dashboard');
+        }
+        return redirect()->route('home');
     }
 }
