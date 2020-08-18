@@ -44,11 +44,11 @@ class LoginController extends Controller
     }
 
     // cek siapakah yang login, admin atau user biasa
-    protected function authenticated(Request $request, $user)
-    {
-        if ($user->hasRole('admin')) {
-            return redirect()->route('dashboard');
-        }
-        return redirect()->route('home');
-    }
+    // protected function authenticated(Request $request, $user)
+    // {
+    //     if ($user->hasRole('admin')) {
+    //         return redirect()->route('dashboard');
+    //     }
+    //     return redirect()->route('home');
+    // }
 }
