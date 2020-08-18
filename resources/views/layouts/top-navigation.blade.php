@@ -11,42 +11,46 @@
             <i class="fas fa-ellipsis-v"></i>
           </a>
           <ul class="navbar-nav">
-            <li class="nav-item active"><a href="#" class="nav-link">Application</a></li>
-            <li class="nav-item"><a href="#" class="nav-link">Report Something</a></li>
-            <li class="nav-item"><a href="#" class="nav-link">Server Status</a></li>
+            
+            <li class="nav-item"><a href="#" class="nav-link">Bantuan</a></li>
+            <li class="nav-item"><a href="#" class="nav-link">Kontak Kami</a></li>
           </ul>
         </div>
         <form class="form-inline ml-auto">
-          <ul class="navbar-nav">
+          {{-- <ul class="navbar-nav">
             <li><a href="#" data-toggle="search" class="nav-link nav-link-lg d-sm-none"><i class="fas fa-search"></i></a></li>
-          </ul>
+          </ul> --}}
         </form>
         <ul class="navbar-nav navbar-right">
-       
       @if (Route::has('login'))
           @auth
-            <li class="nav-item">
-              <a href ="{{ url('/') }}" class="nav-link">Beranda</a>
-            </li>
-            <li class="nav-item">
-              <a class="dropdown-item" href="{{ route('logout') }}"
-                  onclick="event.preventDefault();
-                                  document.getElementById('logout-form').submit();">
-                  {{ __('Logout') }}
+          <li class="dropdown"><a href="#" data-toggle="dropdown" class="nav-link dropdown-toggle nav-link-lg nav-link-user">
+            <img alt="image" src="{{ asset('img/avatar/avatar-1.png') }}" class="rounded-circle mr-1">
+            <div class="d-sm-none d-lg-inline-block">{{ Auth::user()->name }}</div></a>
+            <div class="dropdown-menu dropdown-menu-right">
+              {{-- <div class="dropdown-title">Logged in 5 min ago</div> --}}
+              <a href="/" class="dropdown-item has-icon">
+                <i class="fas fa-home"></i> Beranda
               </a>
-              <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+              <a href="/dashboard" class="dropdown-item has-icon">
+                <i class="fas fa-tachometer-alt"></i> Dashboard
+              </a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item has-icon text-danger" href="{{ route('logout') }}"
+              onclick="event.preventDefault();
+                              document.getElementById('logout-form').submit();"><i class="fas fa-sign-out-alt"></i>
+              {{ __('Logout') }}
+            </a>
+      
+            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                 @csrf
-              </form>
-            </li>
+            </form>
+            </div>
+          </li>
           @else
             <li class="nav-item">
-                <a href= "{{route('login')}}" class="nav-item text-secondary">Login</a>
+              <a href="{{ route('login') }}" class="btn btn-primary text-uppercase">Nulis artikel yuk!!</a>
             </li>
-              @if (Route::has('register'))
-              <li class="nav-item">
-                <a href = "{{route('register')}}" class="nav-item text-secondary">Register</a>
-              </li>
-              @endif
           @endauth
       @endif
         
@@ -58,14 +62,11 @@
         <div class="container">
           <ul class="navbar-nav">
             <li class="nav-item dropdown">
-              <a href="#" data-toggle="dropdown" class="nav-link has-dropdown"><i class="fas fa-fire"></i><span>Dashboard</span></a>
+              <a href="#" data-toggle="dropdown" class="nav-link has-dropdown"><i class="fas fa-fire"></i><span>Kategori</span></a>
               <ul class="dropdown-menu">
-                <li class="nav-item"><a href="index-0.html" class="nav-link">General Dashboard</a></li>
-                <li class="nav-item"><a href="index.html" class="nav-link">Ecommerce Dashboard</a></li>
+                <li class="nav-item"><a href="#" class="nav-link">Horror</a></li>
+                <li class="nav-item"><a href="#" class="nav-link">Percintaan</a></li>
               </ul>
-            </li>
-            <li class="nav-item active">
-              <a href="#" class="nav-link"><i class="far fa-heart"></i><span>Top Navigation</span></a>
             </li>
           </ul>
         </div>
