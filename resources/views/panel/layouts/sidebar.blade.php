@@ -8,7 +8,8 @@
       </div>
       <ul class="sidebar-menu">
           <li class="menu-header">Master</li>
-          <li class="active"><a class="nav-link" href="#"><i class="fas fa-fire"></i> <span>Dashboard</span></a></li>
+          <li class="active"><a class="nav-link" href="/dashboard"><i class="fas fa-fire"></i> <span>Dashboard</span></a></li>
+          <li class=""><a class="nav-link" href="{{ route('my.artikel') }}"><i class="fas fa-newspaper"></i> <span>Artikel</span></a></li>
           <li class="menu-header">Settings</li>
 
             <li class="">
