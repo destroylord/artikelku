@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use App\Category;
 use Alert;
 use Illuminate\Http\Request;
-use DataTables;
+use App\Http\Requests\CategoryRequest;
+use Yajra\Datatables\Datatables;
+
 
 class CategoryController extends Controller
 {
@@ -18,6 +20,10 @@ class CategoryController extends Controller
     {
         //
         return view('panel.categori.index');
+    }
+    public function getCategory()
+    {
+        return Datatables::of(Category::query())->make(true);
     }
 
     /**
@@ -37,7 +43,7 @@ class CategoryController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CategoryRequest $request)
     {
         $attr = $request->all();
         

@@ -22,6 +22,7 @@ Route::group(['prefix' => 'artikel'], function () {
 //Category
 Route::group(['prefix' => 'category'], function () {
     Route::get('/','CategoryController@index')->name('categori.index');
+    Route::get('/getCategory','CategoryController@getCategory')->name('categori.getCategory');
     Route::get('/create','CategoryController@create')->name('category.create');
     Route::post('/store','CategoryController@store')->name('category.store');
 });
