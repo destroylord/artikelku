@@ -20,6 +20,7 @@
                           </div>
                           <div class="card-body p-0">
                             <div class="table-responsive">
+                              {{$dataTable->table()}}
                               <table class="table table-striped table-md">
                                 <tbody><tr>
                                   <th>#</th>

@@ -29,7 +29,7 @@
                                     @csrf
                                     <div class="form-group">
                                         <label for="">Nama kategori</label>
-                                        <input class="form-control" type="text" name="category">
+                                        <input class="form-control" type="text" name="name">
                                     </div>
                             </div>
                             <div class="card-footer">

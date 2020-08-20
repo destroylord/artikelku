@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Category;
 use Alert;
 use Illuminate\Http\Request;
+use DataTables;
 
 class CategoryController extends Controller
 {
@@ -39,12 +40,14 @@ class CategoryController extends Controller
     public function store(Request $request)
     {
         $attr = $request->all();
-
-        $attr['slug'] = \Str::slug(request('title'));
+        
+        $slug = \Str::slug(request('name'));
+        $attr['slug'] = $slug;
 
         Category::create($attr);
 
-        return redirect('/category')->alert()->success('Berhasil','Data telah ditambahkan');
+        Alert::toast('Kategori berhasil ditambahkan','success')->timerProgressBar();
+        return redirect('/category');
     }
 
     /**
