@@ -19,6 +19,11 @@ Route::group(['prefix' => 'artikel'], function () {
     Route::get('/create','ArticleController@create')->name('article.create');    
 });
 
+//Category
+Route::group(['prefix' => 'category','middleware' => 'admin'], function () {
+    
+});
+
 
 // 
 Route::get('/menu','MenuController@index');
