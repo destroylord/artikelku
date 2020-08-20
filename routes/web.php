@@ -16,12 +16,14 @@ Route::get('/dashboard', function () {
 // Artikel
 Route::group(['prefix' => 'artikel'], function () {
     Route::get('/my-artikel','ArticleController@index')->name('my.artikel');
-    Route::get('/create','ArticleController@create')->name('article.create');    
+    Route::get('/create','ArticleController@create')->name('article.create');
 });
 
 //Category
-Route::group(['prefix' => 'category','middleware' => 'admin'], function () {
-    
+Route::group(['prefix' => 'category'], function () {
+    Route::get('/','CategoryController@index')->name('categori.index');
+    Route::get('/create','CategoryController@create')->name('category.create');
+    Route::post('/store','CategoryController@store')->name('category.store');
 });
 
 

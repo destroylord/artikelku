@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Category;
+use Alert;
 use Illuminate\Http\Request;
 
 class CategoryController extends Controller
@@ -15,6 +16,7 @@ class CategoryController extends Controller
     public function index()
     {
         //
+        return view('panel.categori.index');
     }
 
     /**
@@ -25,6 +27,7 @@ class CategoryController extends Controller
     public function create()
     {
         //
+        return view('panel.categori.create');
     }
 
     /**
@@ -35,7 +38,13 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $attr = $request->all();
+
+        $attr['slug'] = \Str::slug(request('title'));
+
+        Category::create($attr);
+
+        return redirect('/category')->alert()->success('Berhasil','Data telah ditambahkan');
     }
 
     /**

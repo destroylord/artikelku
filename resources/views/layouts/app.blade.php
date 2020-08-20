@@ -27,6 +27,7 @@
 <body class="{{$layout ?? '' }}">
     <div id="app">
         <main class="{{ $wrapper ?? '' }}">
+            @include('sweetalert::alert')
             @yield('content')
         </main>
     </div>
