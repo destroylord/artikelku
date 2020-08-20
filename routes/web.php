@@ -27,6 +27,11 @@ Route::group(['prefix' => 'category'], function () {
     Route::post('/store','CategoryController@store')->name('category.store');
 });
 
-
-// 
+// tags
+Route::group(['prefix' => 'tag'], function () {
+    Route::get('/','TagController@index')->name('tag.index');
+    Route::get('/create','TagController@create')->name('tag.create');
+    Route::post('/store','TagController@store')->name('tag.store');
+});
+//Menu 
 Route::get('/menu','MenuController@index');

@@ -8,7 +8,7 @@
       </div>
       <ul class="sidebar-menu">
           <li class="menu-header">Master</li>
-          <li class="active">
+          <li class="">
             <a class="nav-link" href="/dashboard"><i class="fas fa-fire"></i> <span>Dashboard</span>
             </a>
           </li>
@@ -18,6 +18,10 @@
           </li>
           <li class="">
             <a class="nav-link" href="{{ route('categori.index') }}"><i class="fas fa-newspaper"></i> <span>Kategori</span>
+            </a>
+          </li>
+          <li class="">
+            <a class="nav-link" href="{{ route('tag.index') }}"><i class="fas fa-newspaper"></i> <span>Tag</span>
             </a>
           </li>
           <li class="menu-header">Settings</li>
