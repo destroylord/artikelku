@@ -8,19 +8,19 @@
       </div>
       <ul class="sidebar-menu">
           <li class="menu-header">Master</li>
-          <li class="">
+          <li class="{{ Request::is('dashboard') ? ' active' : '' }}">
             <a class="nav-link" href="/dashboard"><i class="fas fa-fire"></i> <span>Dashboard</span>
             </a>
           </li>
-          <li class="">
+          <li class="{{ request()->is('artikel/my-artikel') ? ' active' : '' }}">
             <a class="nav-link" href="{{ route('my.artikel') }}"><i class="fas fa-newspaper"></i> <span>Artikel</span>
             </a>
           </li>
-          <li class="">
+          <li class="{{ request()->is('category') ? ' active' : '' }}">
             <a class="nav-link" href="{{ route('categori.index') }}"><i class="fas fa-newspaper"></i> <span>Kategori</span>
             </a>
           </li>
-          <li class="">
+          <li class="{{ request()->is('tag') ? ' active' : '' }}">
             <a class="nav-link" href="{{ route('tag.index') }}"><i class="fas fa-newspaper"></i> <span>Tag</span>
             </a>
           </li>
