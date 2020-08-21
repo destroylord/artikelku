@@ -42,8 +42,9 @@
                                         <label for="Kategori">Kategori</label>
                                         <select name="kategori" id="kategori" class="form-control">
                                             <option selecterd disable>Pilih salah satu</option>
-                                            <option value="">Horror</option>
-                                            <option value="">Romance</option>
+                                            @foreach ($categories as $category)
+                                                <option value="">{{ $category->name }}</option>
+                                            @endforeach
                                         </select>
                                     </div>
                                     <div class="form-group">

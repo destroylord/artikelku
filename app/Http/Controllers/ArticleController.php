@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Article;
+use App\{Article, Category, Tag};
 use Illuminate\Http\Request;
 
 class ArticleController extends Controller
@@ -26,7 +26,10 @@ class ArticleController extends Controller
     public function create()
     {
         //
-        return view('panel.artikel.create');
+        return view('panel.artikel.create',
+                    [
+                        'categories' => Category::get(),
+                    ]);
     }
     /**
      * Store a newly created resource in storage.
