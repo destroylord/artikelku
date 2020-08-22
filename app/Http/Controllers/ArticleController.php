@@ -29,6 +29,7 @@ class ArticleController extends Controller
         return view('panel.artikel.create',
                     [
                         'categories' => Category::get(),
+                        'tags' => Tag::get(),
                     ]);
     }
     /**

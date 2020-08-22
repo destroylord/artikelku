@@ -48,8 +48,14 @@
                                         </select>
                                     </div>
                                     <div class="form-group">
-                                        <label for="tags">Tags</label>
-                                        <input id="tags" class="form-control" type="text" name="tags[]">
+                                        <label for="tags">Tags</label> 
+
+                                        <!-- Options -->
+                                        <select id="multiple" multiple>
+                                            @foreach ($tags as $tag)
+                                                <option value="{{ $tag->id }}">{{ $tag->name }}</option>
+                                            @endforeach
+                                        </select>
                                     </div>
                                 </form>
                             </div>
@@ -65,3 +71,12 @@
         </div>
     </div>
 @endsection
+@push('scripts')
+<script>
+$(function(){
+    new SlimSelect({
+    select: '#multiple'
+  })
+});
+</script>
+@endpush
