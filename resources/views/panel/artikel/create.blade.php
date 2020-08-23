@@ -36,7 +36,7 @@
                                     </div>
                                     <div class="form-group">
                                         <label for="Deskripsi">Deskripsi</label>
-                                       <textarea name="deskripsi" class="form-control" id="deskripsi" cols="40" rows="50"></textarea>
+                                       <textarea name="deskripsi" class="form-control" id="editor" cols="40" rows="50"></textarea>
                                     </div>
                                     <div class="form-group">
                                         <label for="Kategori">Kategori</label>
@@ -74,6 +74,7 @@
 @push('scripts')
 <script>
 $(function(){
+    CKEDITOR.replace( 'editor' );
     new SlimSelect({
     select: '#multiple'
   })

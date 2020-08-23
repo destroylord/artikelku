@@ -46,6 +46,8 @@
     {{-- slimjs --}}
     <script src="https://cdnjs.cloudflare.com/ajax/libs/slim-select/1.26.0/slimselect.min.js"></script>
     
+    {{-- ckeditor --}}
+    <script src="https://cdn.ckeditor.com/4.13.0/standard/ckeditor.js"></script>
     <!-- DataTables -->
     <script src="//cdn.datatables.net/1.10.7/js/jquery.dataTables.min.js"></script>
 
