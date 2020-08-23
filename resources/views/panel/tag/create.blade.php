@@ -27,21 +27,7 @@
                             <div class="card-body">
                                 <form action="{{ route('tag.store') }}" method="POST">
                                     @csrf
-                                    <div class="form-group">
-                                        <label for="">Nama Tag</label>
-                                        <input class="form-control @error('name') is-invalid @enderror" type="text" name="name">
-                                    </div>
-                                    @error('name')
-                                    <small class="text-danger">
-                                        {{ $message }}
-                                    </small>
-                                    @enderror
-                            </div>
-                            <div class="card-footer">
-                                <button class="btn btn-primary">
-                                    Submit
-                                </button>
-                            </div>
+                                    @include('panel.tag.partials.form-control', ['submit' => 'Submit'])
                                 </form>
                         </div>
                     </div>

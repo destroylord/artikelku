@@ -28,7 +28,7 @@ class TagController extends Controller
     public function create()
     {
         //
-        return view('panel.tag.create');
+        return view('panel.tag.create', ['tag' => new Tag()]);
     }
 
     /**
@@ -81,7 +81,12 @@ class TagController extends Controller
      */
     public function update(Request $request, Tag $tag)
     {
-        //
+        $attr = $request->all();
+
+        $tag->update($attr);
+
+        Alert::toast('Tag berhasil diupdate','success')->timerProgressBar();
+        return redirect('/tag');
     }
 
     /**
@@ -90,9 +95,12 @@ class TagController extends Controller
      * @param  \App\Tag  $tag
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Tag $tag)
+    public function destroy(Tag $tag,$id)
     {
-        // $tag->delete();
+        $tagId = Tag::find($id);
+        $tagId->delete();
 
+        Alert::toast('Tag berhasil dihapus','success')->timerProgressBar();
+        return back();
     }
 }

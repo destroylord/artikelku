@@ -29,7 +29,7 @@ class CategoryController extends Controller
     public function create()
     {
         //
-        return view('panel.categori.create');
+        return view('panel.categori.create', ['category' => new Category()]);
     }
 
     /**
@@ -71,6 +71,7 @@ class CategoryController extends Controller
     public function edit(Category $category)
     {
         //
+        return view('panel.categori.edit', compact('category'));
     }
 
     /**
@@ -82,7 +83,13 @@ class CategoryController extends Controller
      */
     public function update(Request $request, Category $category)
     {
-        //
+        $attr = $request->all();
+
+        $category->update($attr);
+
+        Alert::toast('Kategori berhasil diupdate','success')->timerProgressBar();
+        return redirect('/category');
+        
     }
 
     /**
@@ -91,8 +98,13 @@ class CategoryController extends Controller
      * @param  \App\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Category $category)
-    {
-        //
+    public function destroy(Category $category,$id)
+    {   
+        
+        $categoryId = Category::find($id);
+        $categoryId->delete();
+
+        Alert::toast('Kategori berhasil dihapus','success')->timerProgressBar();
+        return back();
     }
 }

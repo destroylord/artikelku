@@ -39,8 +39,15 @@
                                         <td>{{ $item->slug }}</td>
                                         <td>{{ $item->created_at->format('d-m-Y') }}</td>
                                         <td>
-                                          <a href="#" class="btn btn-icon btn-primary"><i class="far fa-edit"></i></a>
-                                          <a href="#" class="btn btn-icon btn-danger"><i class="fas fa-trash"></i></a>
+                                          <a href="/category/{{ $item->slug }}/edit" class="btn btn-icon btn-primary"><i class="far fa-edit"></i></a>
+
+                                          <a href="#" data-id="{{ $item->id }}" class="btn btn-icon btn-danger swal-confirm">
+                                            <form action="{{ route('category.delete',$item->id) }}" method="POST" id="delete{{ $item->id }}">
+                                              @csrf
+                                              @method('delete')
+                                              <i class="fas fa-trash" data-id="{{ $item->id }}"></i>
+                                            </form>
+                                          </a>
                                         </td>
                                     </tr>
                                     @endforeach
@@ -54,3 +61,31 @@
             </div>
         </div>
 @endsection
+
+@push('scripts')
+<script>
+  $('.swal-confirm').click(function(e){
+    // mendapatkan id ketika di klik
+    id = e.target.dataset.id;
+
+    swal({
+      title: "Apakah Anda yakin?",
+      text: "Data yang terhapus tidak bisa dibalikin!!",
+      icon: "warning",
+      buttons: true,
+      dangerMode: true,
+    })
+    .then((willDelete) => {
+      if (willDelete) {
+        // swal("Poof! Your imaginary file has been deleted!", {
+        //   icon: "success",
+        // });
+        // url ke routing
+        $(`#delete${id}`).submit()
+      } else {
+        // swal("Your imaginary file is safe!");
+      }
+    });
+  })
+</script>
+@endpush

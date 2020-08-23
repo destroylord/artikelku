@@ -26,6 +26,9 @@ Route::group(['prefix' => 'category'], function () {
     Route::get('/getCategory','CategoryController@getCategory')->name('categori.getCategory');
     Route::get('/create','CategoryController@create')->name('category.create');
     Route::post('/store','CategoryController@store')->name('category.store');
+    Route::get('/{category:slug}/edit','CategoryController@edit');
+    Route::patch('/{category:slug}/edit','CategoryController@update');
+    Route::delete('/delete/{id}','CategoryController@destroy')->name('category.delete');
 });
 
 // tags
@@ -34,7 +37,8 @@ Route::group(['prefix' => 'tag'], function () {
     Route::get('/create','TagController@create')->name('tag.create');
     Route::post('/store','TagController@store')->name('tag.store');
     Route::get('/{tag:slug}/edit','TagController@edit');
-    Route::patch('/{tag:slug}/update','TagController@update');
+    Route::patch('/{tag:slug}/edit','TagController@update');
+    Route::delete('/delete/{id}','TagController@destroy')->name('tag.delete');
 });
 //Menu 
 Route::get('/menu','MenuController@index');

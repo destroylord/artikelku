@@ -27,21 +27,7 @@
                             <div class="card-body">
                                 <form action="{{ route('category.store') }}" method="POST">
                                     @csrf
-                                    <div class="form-group">
-                                        <label for="">Nama kategori</label>
-                                        <input class="form-control @error('name') is-invalid @enderror" type="text" name="name">
-                                    </div>
-                                    @error('name')
-                                    <small class="text-danger">
-                                        {{ $message }}
-                                    </small>
-                                    @enderror
-                            </div>
-                            <div class="card-footer">
-                                <button class="btn btn-primary">
-                                    Submit
-                                </button>
-                            </div>
+                                    @include('panel.categori.partials.form-control', ['submit' => 'Submit'])
                                 </form>
                         </div>
                     </div>
