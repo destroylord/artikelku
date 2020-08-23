@@ -30,6 +30,22 @@
                                     <th>Action</th>
                                   </tr>
                                 </thead>
+                                <tbody>
+                                  @foreach ($tags as $item)
+                                    <tr>
+                                        <td>{{ $loop->iteration }}</td>
+                                        <td>{{ $item->name }}</td>
+                                        <td>{{ $item->slug }}</td>
+                                        <td>{{ $item->created_at->format('d-m-Y') }}</td>
+                                        <td>
+                                          <a href="tag/{{ $item->slug }}/edit" class="btn btn-icon btn-primary"><i class="far fa-edit"></i></a>
+                                          
+                                            <a href="#" class="btn btn-icon btn-danger"><i class="fas fa-trash"></i></a>
+                                          
+                                        </td>
+                                    </tr>
+                                    @endforeach
+                                </tbody>
                               </table>
                             </div>
                           </div>
@@ -39,19 +55,27 @@
             </div>
         </div>
 @endsection
+
 @push('scripts')
-    $(function(){
-      $('#users-table').DataTable({
-        processing: true,
-        serverSide: true,
-        ajax: '{!! route('categori.getCategory') !!}',
-        columns: [
-            { data: 'id', name: 'id' },
-            { data: 'name', name: 'name' },
-            { data: 'slug', name: 'slug' },
-            { data: 'created_at', name: 'created_at' },
-            { data: 'updated_at', name: 'updated_at' }
-        ]
-    });
-    });
+<script>
+  swal({
+    title: "Are you sure?",
+    text: "Once deleted, you will not be able to recover this imaginary file!",
+    icon: "warning",
+    buttons: true,
+    dangerMode: true,
+  })
+  .then((willDelete) => {
+    if (willDelete) {
+      axios.delete('route').then() => {
+        window.locaitioin.
+        swal("Poof! Your imaginary file has been deleted!", {
+        icon: "success",
+        });
+      }
+    } else {
+      swal("Your imaginary file is safe!");
+    }
+});
+</script>
 @endpush

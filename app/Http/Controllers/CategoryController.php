@@ -18,14 +18,9 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        //
-        return view('panel.categori.index');
+        $categories = Category::all();
+        return view('panel.categori.index',compact('categories'));
     }
-    public function getCategory()
-    {
-        return Datatables::of(Category::query())->make(true);
-    }
-
     /**
      * Show the form for creating a new resource.
      *

@@ -16,7 +16,8 @@ class TagController extends Controller
      */
     public function index()
     {
-        return view('panel.tag.index');
+        $tags = Tag::all();
+        return view('panel.tag.index', compact('tags'));
     }
 
     /**
@@ -68,7 +69,7 @@ class TagController extends Controller
      */
     public function edit(Tag $tag)
     {
-        //
+        return view('panel.tag.edit', compact('tag'));
     }
 
     /**
@@ -91,6 +92,7 @@ class TagController extends Controller
      */
     public function destroy(Tag $tag)
     {
-        //
+        // $tag->delete();
+
     }
 }

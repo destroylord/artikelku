@@ -16,7 +16,7 @@
                     <div class="col-12 col-md-12 col-lg-12">
                         <div class="card">
                           <div class="card-header">
-                            <a href="{{ route('category.create') }}" class="btn btn-icon icon-left btn-primary btn-sm" > <i class="fas fa-plus"></i> Tambah Artikel</a>
+                            <a href="{{ route('category.create') }}" class="btn btn-icon icon-left btn-primary btn-sm" > <i class="fas fa-plus"></i> Tambah Kategori</a>
                           </div>
                           <div class="card-body p-0">
                             <div class="table-responsive">
@@ -24,14 +24,27 @@
                               <table class="table table-striped table-md" id="users-table">
                                 <thead>
                                   <tr>
-                                    <th>#</th>
+                                    <th>No.</th>
                                     <th>Name</th>
                                     <th>Slug</th>
                                     <th>Created At</th>
-                                    <th>Status</th>
                                     <th>Action</th>
                                   </tr>
                                 </thead>
+                                <tbody>
+                                    @foreach ($categories as $item)
+                                    <tr>
+                                        <td>{{ $loop->iteration }}</td>
+                                        <td>{{ $item->name }}</td>
+                                        <td>{{ $item->slug }}</td>
+                                        <td>{{ $item->created_at->format('d-m-Y') }}</td>
+                                        <td>
+                                          <a href="#" class="btn btn-icon btn-primary"><i class="far fa-edit"></i></a>
+                                          <a href="#" class="btn btn-icon btn-danger"><i class="fas fa-trash"></i></a>
+                                        </td>
+                                    </tr>
+                                    @endforeach
+                                </tbody>
                               </table>
                             </div>
                           </div>
@@ -41,19 +54,3 @@
             </div>
         </div>
 @endsection
-@push('scripts')
-    $(function(){
-      $('#users-table').DataTable({
-        processing: true,
-        serverSide: true,
-        ajax: '{!! route('categori.getCategory') !!}',
-        columns: [
-            { data: 'id', name: 'id' },
-            { data: 'name', name: 'name' },
-            { data: 'slug', name: 'slug' },
-            { data: 'created_at', name: 'created_at' },
-            { data: 'updated_at', name: 'updated_at' }
-        ]
-    });
-    });
-@endpush

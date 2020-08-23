@@ -33,6 +33,8 @@ Route::group(['prefix' => 'tag'], function () {
     Route::get('/','TagController@index')->name('tag.index');
     Route::get('/create','TagController@create')->name('tag.create');
     Route::post('/store','TagController@store')->name('tag.store');
+    Route::get('/{tag:slug}/edit','TagController@edit');
+    Route::patch('/{tag:slug}/update','TagController@update');
 });
 //Menu 
 Route::get('/menu','MenuController@index');
