@@ -18,6 +18,7 @@ Route::get('/dashboard', function () {
 Route::group(['prefix' => 'artikel'], function () {
     Route::get('/my-artikel','ArticleController@index')->name('my.artikel');
     Route::get('/create','ArticleController@create')->name('article.create');
+    Route::post('/store','ArticleController@store')->name('article.store');
 });
 
 //Category

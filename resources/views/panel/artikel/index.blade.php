@@ -22,48 +22,33 @@
                             <div class="table-responsive">
                               <table class="table table-striped table-md">
                                 <tbody><tr>
-                                  <th>#</th>
-                                  <th>Name</th>
-                                  <th>Created At</th>
-                                  <th>Status</th>
+                                  <th>No</th>
+                                  <th>Judul</th>
+                                  <th>Seo</th>
+                                  <th>Deskripsi</th>
                                   <th>Action</th>
                                 </tr>
-                                <tr>
-                                  <td>1</td>
-                                  <td>Irwansyah Saputra</td>
-                                  <td>2017-01-09</td>
-                                  <td><div class="badge badge-success">Active</div></td>
-                                  <td><a href="#" class="btn btn-secondary">Detail</a></td>
-                                </tr>
-                                <tr>
-                                  <td>2</td>
-                                  <td>Hasan Basri</td>
-                                  <td>2017-01-09</td>
-                                  <td><div class="badge badge-success">Active</div></td>
-                                  <td><a href="#" class="btn btn-secondary">Detail</a></td>
-                                </tr>
-                                <tr>
-                                  <td>3</td>
-                                  <td>Kusnadi</td>
-                                  <td>2017-01-11</td>
-                                  <td><div class="badge badge-danger">Not Active</div></td>
-                                  <td><a href="#" class="btn btn-secondary">Detail</a></td>
-                                </tr>
-                                <tr>
-                                  <td>4</td>
-                                  <td>Rizal Fakhri</td>
-                                  <td>2017-01-11</td>
-                                  <td><div class="badge badge-success">Active</div></td>
-                                  <td><a href="#" class="btn btn-secondary">Detail</a></td>
-                                </tr>
-                                <tr>
-                                  <td>5</td>
-                                  <td>Isnap Kiswandi</td>
-                                  <td>2017-01-17</td>
-                                  <td><div class="badge badge-success">Active</div></td>
-                                  <td><a href="#" class="btn btn-secondary">Detail</a></td>
-                                </tr>
-                              </tbody></table>
+                                @foreach ($articles as $item)
+                                    <tr>
+                                      <td>{{ $loop->iteration }}</td>
+                                      <td>{{ $item->title }}</td>
+                                      <td>{{ $item->slug }}</td>
+                                      <td>{{ Str::limit($item->body, 150) }}</td>
+                                      <td>
+                                       <a href="/category/{{ $item->slug }}/edit" class="btn btn-icon btn-primary"><i class="far fa-edit"></i></a>
+
+                                          <a href="#" data-id="{{ $item->id }}" class="btn btn-icon btn-danger swal-confirm">
+                                            <form action="{{ route('category.delete',$item->id) }}" method="POST" id="delete{{ $item->id }}">
+                                              @csrf
+                                              @method('delete')
+                                              <i class="fas fa-trash" data-id="{{ $item->id }}"></i>
+                                            </form>
+                                          </a>
+                                      </td>
+                                    </tr>
+                                @endforeach
+                                </tbody>
+                              </table>
                             </div>
                           </div>
                           <div class="card-footer text-right">

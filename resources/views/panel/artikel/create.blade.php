@@ -25,45 +25,10 @@
                                 <h4>Input Form</h4>
                             </div>
                             <div class="card-body">
-                                <form action="" method="post">
-                                    <div class="form-group">
-                                        <label for="judul">Judul</label>
-                                        <input id="judul" class="form-control" type="text" name="judul">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="slug">SEO</label>
-                                        <input id="slug" class="form-control" type="text" name="slug">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="Deskripsi">Deskripsi</label>
-                                       <textarea name="deskripsi" class="form-control" id="editor" cols="40" rows="50"></textarea>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="Kategori">Kategori</label>
-                                        <select name="kategori" id="kategori" class="form-control">
-                                            <option selecterd disable>Pilih salah satu</option>
-                                            @foreach ($categories as $category)
-                                                <option value="">{{ $category->name }}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="tags">Tags</label> 
-
-                                        <!-- Options -->
-                                        <select id="multiple" multiple>
-                                            @foreach ($tags as $tag)
-                                                <option value="{{ $tag->id }}">{{ $tag->name }}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
+                                <form action="{{ route('article.store') }}" method="post">
+                                    @csrf
+                                    @include('panel.artikel.partials.form-control')
                                 </form>
-                            </div>
-                            <div class="card-footer">
-                                <button class="btn btn-primary">
-                                    Submit
-                                </button>
-                            </div>
                         </div>
                     </div>
                 </div>

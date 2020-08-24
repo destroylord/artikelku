@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\{Article, Category, Tag};
+use App\Http\Requests\ArticleRequest;
 use Illuminate\Http\Request;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class ArticleController extends Controller
 {
@@ -12,10 +14,10 @@ class ArticleController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Article $article)
     {
-        //
-        return view('panel.artikel.index');
+        $articles = $article->all();
+        return view('panel.artikel.index',compact('articles'));
     }
 
     /**
@@ -38,9 +40,17 @@ class ArticleController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ArticleRequest $request)
     {
-        //
+        $attr = request()->all();
+        
+        $slug  = \Str::slug(request('title'));
+        $attr['slug'] = $slug;
+
+        Article::create($attr);
+
+        Alert::toast('Artikel berhasil ditambahkan','success')->timerProgressBar();
+        return redirect('/artikel/my-artikel');
     }
 
     /**
