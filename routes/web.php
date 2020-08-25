@@ -19,6 +19,8 @@ Route::group(['prefix' => 'artikel'], function () {
     Route::get('/my-artikel','ArticleController@index')->name('my.artikel');
     Route::get('/create','ArticleController@create')->name('article.create');
     Route::post('/store','ArticleController@store')->name('article.store');
+    Route::get('/{article:slug}/edit','ArticleController@edit');
+    Route::patch('/{article:slug}/edit','ArticleController@update');
 });
 
 //Category

@@ -30,6 +30,7 @@ class ArticleController extends Controller
         //
         return view('panel.artikel.create',
                     [
+                        'article' => new Article(),
                         'categories' => Category::get(),
                         'tags' => Tag::get(),
                     ]);
@@ -72,7 +73,11 @@ class ArticleController extends Controller
      */
     public function edit(Article $article)
     {
-        //
+        return view('panel.artikel.edit', [
+            'article' => $article,
+            'categories' => Category::get(),
+            'tags' => Tag::get(),
+        ]);
     }
 
     /**
@@ -82,9 +87,17 @@ class ArticleController extends Controller
      * @param  \App\Article  $article
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Article $article)
+    public function update(ArticleRequest $request, Article $article)
     {
-        //
+        $attr = $request->all();
+
+        $slug = \Str::slug(request('title'));
+        $attr['slug'] = $slug;
+
+        $article->update($attr);
+
+        Alert::toast('Artikel berhasil diupdate','success')->timerProgressBar();
+        return redirect('/artikel/my-artikel');
     }
 
     /**

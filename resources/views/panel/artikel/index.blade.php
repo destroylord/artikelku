@@ -33,9 +33,9 @@
                                       <td>{{ $loop->iteration }}</td>
                                       <td>{{ $item->title }}</td>
                                       <td>{{ $item->slug }}</td>
-                                      <td>{{ Str::limit($item->body, 150) }}</td>
+                                      <td>{!! Str::limit($item->body, 150) !!}</td>
                                       <td>
-                                       <a href="/category/{{ $item->slug }}/edit" class="btn btn-icon btn-primary"><i class="far fa-edit"></i></a>
+                                       <a href="/artikel/{{ $item->slug }}/edit" class="btn btn-icon btn-primary"><i class="far fa-edit"></i></a>
 
                                           <a href="#" data-id="{{ $item->id }}" class="btn btn-icon btn-danger swal-confirm">
                                             <form action="{{ route('category.delete',$item->id) }}" method="POST" id="delete{{ $item->id }}">
