@@ -93,6 +93,7 @@ class ArticleController extends Controller
 
         $slug = \Str::slug(request('title'));
         $attr['slug'] = $slug;
+        $attr['category_id'] = request('category_id');
 
         $article->update($attr);
 
@@ -106,8 +107,12 @@ class ArticleController extends Controller
      * @param  \App\Article  $article
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Article $article)
+    public function destroy(Article $article,$id)
     {
-        //
+        $articleId = Article::find($id);
+        $articleId->delete();
+
+        Alert::toast('Artikel berhasil dihapus','success')->timerProgressBar();
+        return redirect('/artikel/my-artikel');
     }
 }

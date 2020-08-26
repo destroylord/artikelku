@@ -27,7 +27,7 @@
                             <div class="card-body">
                                 <form action="{{ route('article.store') }}" method="post">
                                     @csrf
-                                    @include('panel.artikel.partials.form-control')
+                                    @include('panel.artikel.partials.form-control', ['submit' => 'submit'])
                                 </form>
                         </div>
                     </div>

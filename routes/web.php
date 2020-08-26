@@ -1,5 +1,6 @@
 <?php
 
+use App\Article;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -21,6 +22,7 @@ Route::group(['prefix' => 'artikel'], function () {
     Route::post('/store','ArticleController@store')->name('article.store');
     Route::get('/{article:slug}/edit','ArticleController@edit');
     Route::patch('/{article:slug}/edit','ArticleController@update');
+    Route::delete('/delete/{id}','ArticleController@destroy')->name('article.delete');
 });
 
 //Category

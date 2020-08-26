@@ -18,11 +18,11 @@
 </div>
 <div class="form-group">
     <label for="Kategori">Kategori</label>
-    <select name="" id="kategori" class="form-control">
-        <option selecterd disable>Pilih salah satu</option>
+    <select name="category_id" id="kategori" class="form-control">
         @foreach ($categories as $category)
-            <option value="">{{ $category->name }}</option>
+            <option {{ $category->id == $article->category_id ? 'selected' : ''}} value="{{ $category->id }}">{{ $category->name }}</option>            
         @endforeach
+
     </select>
 </div>
 <div class="form-group">
@@ -38,7 +38,7 @@
 </div>
 <div class="card-footer">
     <button class="btn btn-primary" type="submit">
-     Submit
+     {{ $submit ?? 'update' }}
     </button>
 </div>
 @push('scripts')

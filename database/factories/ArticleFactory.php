@@ -8,6 +8,7 @@ use Faker\Generator as Faker;
 $factory->define(Article::class, function (Faker $faker) {
     return [
         'title'     => $faker->sentence(),
+        'category_id'   => rand(1,4),
         'slug'      => \Str::slug($faker->sentence()),
         'body'      => $faker->text()
     ];

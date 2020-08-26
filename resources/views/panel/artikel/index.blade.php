@@ -26,6 +26,7 @@
                                   <th>Judul</th>
                                   <th>Seo</th>
                                   <th>Deskripsi</th>
+                                  <th>Kategori</th>
                                   <th>Action</th>
                                 </tr>
                                 @foreach ($articles as $item)
@@ -34,11 +35,12 @@
                                       <td>{{ $item->title }}</td>
                                       <td>{{ $item->slug }}</td>
                                       <td>{!! Str::limit($item->body, 150) !!}</td>
+                                      <td>{{ $item->category->name }}</td>
                                       <td>
                                        <a href="/artikel/{{ $item->slug }}/edit" class="btn btn-icon btn-primary"><i class="far fa-edit"></i></a>
 
                                           <a href="#" data-id="{{ $item->id }}" class="btn btn-icon btn-danger swal-confirm">
-                                            <form action="{{ route('category.delete',$item->id) }}" method="POST" id="delete{{ $item->id }}">
+                                            <form action="{{ route('article.delete',$item->id) }}" method="POST" id="delete{{ $item->id }}">
                                               @csrf
                                               @method('delete')
                                               <i class="fas fa-trash" data-id="{{ $item->id }}"></i>
@@ -74,3 +76,30 @@
             </div>
         </div>
 @endsection
+@push('scripts')
+  <script>
+    $('.swal-confirm').click(function(e){
+      // mendapatkan id ketika di klik
+      id = e.target.dataset.id;
+
+      swal({
+        title: "Apakah Anda yakin?"+id,
+        text: "Data yang terhapus tidak bisa dibalikin!!",
+        icon: "warning",
+        buttons: true,
+        dangerMode: true,
+      })
+      .then((willDelete) => {
+        if (willDelete) {
+          // swal("Poof! Your imaginary file has been deleted!", {
+          //   icon: "success",
+          // });
+          // url ke routing
+          $(`#delete${id}`).submit()
+        } else {
+          // swal("Your imaginary file is safe!");
+        }
+      });
+    })
+  </script>
+@endpush
