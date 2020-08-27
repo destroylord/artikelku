@@ -19,6 +19,7 @@
 <div class="form-group">
     <label for="Kategori">Kategori</label>
     <select name="category_id" id="kategori" class="form-control">
+        <option selected disabled value="">Pilih salah satu</option>
         @foreach ($categories as $category)
             <option {{ $category->id == $article->category_id ? 'selected' : ''}} value="{{ $category->id }}">{{ $category->name }}</option>            
         @endforeach
@@ -28,11 +29,11 @@
 <div class="form-group">
     <label for="tags">Tags</label> 
     <!-- Options -->
-    {{-- <select id="multiple" multiple name="tag[]">
-        @foreach ($tags as $tag)
+    <select id="multiple" multiple name="tag[]" class="form-control js-example-basic-multiple">
+        @foreach ($tags as $tag) 
             <option value="{{ $tag->id }}">{{ $tag->name }}</option>
         @endforeach
-    </select> --}}
+    </select>
 </div>
 
 </div>
@@ -45,9 +46,7 @@
 <script>
 $(function(){
     CKEDITOR.replace( 'editor' );
-    new SlimSelect({
-    select: '#multiple'
-  })
+    $('.js-example-basic-multiple').select2();
 });
 </script>
 @endpush

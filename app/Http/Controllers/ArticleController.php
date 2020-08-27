@@ -48,7 +48,9 @@ class ArticleController extends Controller
         $slug  = \Str::slug(request('title'));
         $attr['slug'] = $slug;
 
-        Article::create($attr);
+        $article = Article::create($attr);
+
+        $article->tags()->attach(request('tag'));
 
         Alert::toast('Artikel berhasil ditambahkan','success')->timerProgressBar();
         return redirect('/artikel/my-artikel');

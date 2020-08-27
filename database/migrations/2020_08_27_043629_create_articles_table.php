@@ -18,9 +18,8 @@ class CreateArticlesTable extends Migration
             $table->string('title');
             $table->string('slug');
             $table->string('body');
-            $table->string('thumbnail');
+            $table->string('thumbnail')->nullable();
             $table->unsignedInteger('category_id');
-            $table->string('tag_id');
             $table->timestamps();
 
             $table->foreign('category_id')->references('id')
