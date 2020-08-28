@@ -27,6 +27,7 @@
                                   <th>Seo</th>
                                   <th>Deskripsi</th>
                                   <th>Kategori</th>
+                                  <th>Tag</th>
                                   <th>Action</th>
                                 </tr>
                                 @foreach ($articles as $item)
@@ -36,6 +37,11 @@
                                       <td>{{ $item->slug }}</td>
                                       <td>{!! Str::limit($item->body, 150) !!}</td>
                                       <td>{{ $item->category->name }}</td>
+                                      <td>
+                                          @foreach ($item->tags as $tag)
+                                              {{ $tag->name }}
+                                          @endforeach
+                                      </td>
                                       <td>
                                        <a href="/artikel/{{ $item->slug }}/edit" class="btn btn-icon btn-primary"><i class="far fa-edit"></i></a>
 

@@ -17,7 +17,7 @@ class ArticleController extends Controller
     public function index(Article $article)
     {
         $articles = $article->all();
-        return view('panel.artikel.index',compact('articles'));
+        return view('panel.artikel.index', compact('articles'));
     }
 
     /**
@@ -98,6 +98,7 @@ class ArticleController extends Controller
         $attr['category_id'] = request('category_id');
 
         $article->update($attr);
+        $article->tags()->sync(request('tag'));
 
         Alert::toast('Artikel berhasil diupdate','success')->timerProgressBar();
         return redirect('/artikel/my-artikel');

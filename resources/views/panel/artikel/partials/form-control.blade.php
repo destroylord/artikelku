@@ -30,8 +30,8 @@
     <label for="tags">Tags</label> 
     <!-- Options -->
     <select id="multiple" multiple name="tag[]" class="form-control js-example-basic-multiple">
-        @foreach ($tags as $tag) 
-            <option value="{{ $tag->id }}">{{ $tag->name }}</option>
+        @foreach ($article->tags as $tag) 
+            <option selected value="{{ $tag->id }}">{{ $tag->name }}</option>
         @endforeach
     </select>
 </div>
