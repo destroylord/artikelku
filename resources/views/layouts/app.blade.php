@@ -27,6 +27,7 @@
   <!-- Template CSS -->
   <link rel="stylesheet" href="{{ mix('css/style.css') }}">
 
+
 </head>
 <body class="{{$layout ?? '' }}">
     <div id="app">

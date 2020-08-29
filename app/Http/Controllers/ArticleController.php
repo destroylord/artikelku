@@ -43,10 +43,15 @@ class ArticleController extends Controller
      */
     public function store(ArticleRequest $request)
     {
-        $attr = request()->all();
-        
         $slug  = \Str::slug(request('title'));
         $attr['slug'] = $slug;
+
+        $thumbnail = request()->file('thumbail');
+        $thumbnailUrl = $thumbnail->storeAs("image/story","{$slug}.{$thumbnail->extension()}");
+        dd($thumbnailUrl);
+        
+        $attr['thumbnail'] = $thumbnailUrl;
+
 
         $article = Article::create($attr);
 

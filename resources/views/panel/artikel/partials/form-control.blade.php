@@ -41,11 +41,13 @@
 <div class="form-group">
     <label for="thumbnail">Thumbnail</label>
     <div class="custom-file">
-        <input type="file" class="custom-file-input" id="customFile">
-        <label class="custom-file-label" for="customFile">Choose file</label>
+        <input type="file" class="custom-file-input" id="inputGroupFile02" name="thumbnail"/>
+        <label class="custom-file-label" for="inputGroupFile02">Choose file</label>
+        <img id="blah" src="#" alt="your image" class="img-fluid mt-4" width="200" height="200"/>
     </div>
 </div>
-<div class="card-footer">
+<br>
+<div class="card-footer text-right">
     <button class="btn btn-primary" type="submit">
      {{ $submit ?? 'update' }}
     </button>
@@ -55,8 +57,31 @@
 $(function(){
     CKEDITOR.replace( 'editor' );
     $('.js-example-basic-multiple').select2({
-        placeholder : 'pilih salah satu'
+        placeholder : 'pilih saja'
+    });
+    $('#inputGroupFile02').on('change',function(){
+        //get the file name
+        var fileName = $(this).val().replace('C:\\fakepath\\', " ");
+        //replace the "Choose a file" label
+        $(this).next('.custom-file-label').html(fileName);
     });
 });
+
+function readURL(input) {
+  if (input.files && input.files[0]) {
+    var reader = new FileReader();
+    
+    reader.onload = function(e) {
+      $('#blah').attr('src', e.target.result);
+    }
+    
+    reader.readAsDataURL(input.files[0]); // convert to base64 string
+  }
+}
+
+$("#inputGroupFile02").change(function() {
+  readURL(this);
+});
+
 </script>
 @endpush
