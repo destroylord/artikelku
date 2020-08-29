@@ -50,7 +50,7 @@ class ArticleController extends Controller
 
         $article = Article::create($attr);
 
-        $article->tags()->attach(request('tag'));
+        $article->tags()->attach(request('tags'));
 
         Alert::toast('Artikel berhasil ditambahkan','success')->timerProgressBar();
         return redirect('/artikel/my-artikel');
@@ -98,7 +98,7 @@ class ArticleController extends Controller
         $attr['category_id'] = request('category_id');
 
         $article->update($attr);
-        $article->tags()->sync(request('tag'));
+        $article->tags()->sync(request('tags'));
 
         Alert::toast('Artikel berhasil diupdate','success')->timerProgressBar();
         return redirect('/artikel/my-artikel');

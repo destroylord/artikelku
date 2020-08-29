@@ -29,13 +29,21 @@
 <div class="form-group">
     <label for="tags">Tags</label> 
     <!-- Options -->
-    <select id="multiple" multiple name="tag[]" class="form-control js-example-basic-multiple">
+    <select id="multiple" multiple name="tags[]" class="form-control js-example-basic-multiple">
         @foreach ($article->tags as $tag) 
             <option selected value="{{ $tag->id }}">{{ $tag->name }}</option>
         @endforeach
+        @foreach ($tags as $tag)
+           <option value="{{ $tag->id }}">{{ $tag->name }}</option> 
+        @endforeach
     </select>
 </div>
-
+<div class="form-group">
+    <label for="thumbnail">Thumbnail</label>
+    <div class="custom-file">
+        <input type="file" class="custom-file-input" id="customFile">
+        <label class="custom-file-label" for="customFile">Choose file</label>
+    </div>
 </div>
 <div class="card-footer">
     <button class="btn btn-primary" type="submit">
@@ -46,7 +54,9 @@
 <script>
 $(function(){
     CKEDITOR.replace( 'editor' );
-    $('.js-example-basic-multiple').select2();
+    $('.js-example-basic-multiple').select2({
+        placeholder : 'pilih salah satu'
+    });
 });
 </script>
 @endpush
