@@ -25,7 +25,7 @@
                                 <h4>Input Form</h4>
                             </div>
                             <div class="card-body">
-                                <form action="{{ route('article.store') }}" method="post">
+                                <form action="{{ route('article.store') }}" method="post" enctype="multipart/form-data">
                                     @csrf
                                     @include('panel.artikel.partials.form-control', ['submit' => 'submit'])
                                 </form>

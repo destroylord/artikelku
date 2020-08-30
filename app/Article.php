@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Article extends Model
 {
     
-    protected $fillable = ['title','slug','body','category_id'];
+    protected $fillable = ['title','slug','body','category_id','thumbnail'];
     
     public function category()
     {
@@ -16,5 +16,9 @@ class Article extends Model
     public function tags()
     {
         return $this->belongsToMany(Tag::class);
+    }
+    public function getTakeImage()
+    {
+        return 
     }
 }

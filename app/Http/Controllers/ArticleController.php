@@ -43,13 +43,17 @@ class ArticleController extends Controller
      */
     public function store(ArticleRequest $request)
     {
+        $request->validate([
+            'thumbnail' => 'image|mimes:jpeg,jpg,png,svg'
+        ]);
+        $attr = $request->all();
         $slug  = \Str::slug(request('title'));
         $attr['slug'] = $slug;
 
-        $thumbnail = request()->file('thumbail');
-        $thumbnailUrl = $thumbnail->storeAs("image/story","{$slug}.{$thumbnail->extension()}");
-        dd($thumbnailUrl);
+        $thumbnail = request()->file('thumbnail');
+        $thumbnailUrl = $thumbnail->storeAs("images/thumbnail","{$slug}.{$thumbnail->extension()}");
         
+        $attr['category_id'] = request('category_id');
         $attr['thumbnail'] = $thumbnailUrl;
 
 

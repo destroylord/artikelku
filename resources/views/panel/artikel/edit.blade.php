@@ -25,7 +25,7 @@
                                 <h4>Artikel : {{ $article->title }}</h4>
                             </div>
                             <div class="card-body">
-                                <form action="/artikel/{{ $article->slug }}/edit" method="POST">
+                                <form action="/artikel/{{ $article->slug }}/edit" method="POST" enctype="multipart/form-data">
                                     @csrf
                                     @method('patch')
                                     @include('panel.artikel.partials.form-control')
