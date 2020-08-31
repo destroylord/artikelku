@@ -3,9 +3,7 @@
 use App\Article;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/','HomepageController@index')->name('beranda');
 
 Auth::routes();
 
@@ -47,3 +45,6 @@ Route::group(['prefix' => 'tag'], function () {
 });
 //Menu 
 Route::get('/menu','MenuController@index');
+
+
+Route::get('/categories/{article:category}','CategoryController@show');

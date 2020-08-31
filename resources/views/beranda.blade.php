@@ -112,13 +112,23 @@
         <h2 class="section-title">Semua Artikel</h2>
         <p class="section-lead">Baca semua artikel.</p>
         <div class="row">
+            @forelse ($articles as $item)
             <div class="col-12 col-md-4 col-lg-4">
-                <article class="article article-style-c">
-                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Porro quis maiores suscipit quibusdam recusandae. Esse cum atque voluptate? Praesentium facere debitis placeat quibusdam fugit ipsa ex velit reiciendis deserunt nihil?
-                </article>
+                <div class="card" style="width: 18rem;">
+                    <img src="{{ $item->takeThumbnail }}" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <a href="/categories/{{ $item->category->slug }}">{{ $item->category->name }}</a> &middot; 
+                        @foreach ($item->tags as $tag)
+                            <a href="#">{{ $tag->name }}</a>
+                        @endforeach
+                    </div>
+                </div>
             </div>
-            </div>
+            @empty
+                
+            @endforelse
         </div>
+    </div>
 </section>
 </div>
 @endsection

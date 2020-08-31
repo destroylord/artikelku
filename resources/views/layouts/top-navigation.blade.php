@@ -29,7 +29,7 @@
             <div class="d-sm-none d-lg-inline-block">{{ Auth::user()->name }}</div></a>
             <div class="dropdown-menu dropdown-menu-right">
               {{-- <div class="dropdown-title">Logged in 5 min ago</div> --}}
-              <a href="/" class="dropdown-item has-icon">
+              <a href="{{ route('beranda') }}" class="dropdown-item has-icon">
                 <i class="fas fa-home"></i> Beranda
               </a>
               <a href="/dashboard" class="dropdown-item has-icon">

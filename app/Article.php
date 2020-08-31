@@ -17,8 +17,8 @@ class Article extends Model
     {
         return $this->belongsToMany(Tag::class);
     }
-    public function getTakeImage()
+    public function getTakeThumbnailAttribute()
     {
-        return 
+        return "/storage/". $this->thumbnail;
     }
 }
