@@ -59,9 +59,9 @@ class CategoryController extends Controller
      */
     public function show(Category $category)
     {
-        // $articles = $category->article()->paginate(6);
-        // dd($articles);
-        // return view('beranda', compact('category','articles'));
+        $articles = $category->articles()->paginate(6);
+        
+        return view('beranda', compact('category','articles'));
     }
 
     /**

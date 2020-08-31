@@ -47,4 +47,4 @@ Route::group(['prefix' => 'tag'], function () {
 Route::get('/menu','MenuController@index');
 
 
-Route::get('/categories/{article:category}','CategoryController@show');
+Route::get('/categories/{category:slug}','CategoryController@show');
