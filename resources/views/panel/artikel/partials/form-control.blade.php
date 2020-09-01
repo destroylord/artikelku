@@ -43,7 +43,7 @@
     <div class="custom-file">
         <input type="file" class="custom-file-input" id="inputGroupFile02" name="thumbnail"/>
         <label class="custom-file-label" for="inputGroupFile02">Choose file</label>
-        <img id="blah" src="#" alt="your image" class="img-fluid mt-4" width="200" height="200"/>
+        <img id="blah" src="{{ $article->takeThumbnail }}" alt="your image" class="img-fluid mt-4" width="200" height="200"/>
     </div>
 </div>
 <br>

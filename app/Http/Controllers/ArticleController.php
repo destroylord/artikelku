@@ -52,9 +52,11 @@ class ArticleController extends Controller
 
         $thumbnail = request()->file('thumbnail');
         $thumbnailUrl = $thumbnail->storeAs("images/thumbnail","{$slug}.{$thumbnail->extension()}");
+
+        $validateThumbnail = $thumbnail ? $thumbnailUrl : null;
         
         $attr['category_id'] = request('category_id');
-        $attr['thumbnail'] = $thumbnailUrl;
+        $attr['thumbnail'] = $validateThumbnail;
 
 
         $article = Article::create($attr);
@@ -104,8 +106,19 @@ class ArticleController extends Controller
 
         $slug = \Str::slug(request('title'));
         $attr['slug'] = $slug;
-        $attr['category_id'] = request('category_id');
 
+        $thumbnail = request()->file('thumbnail');
+        $thumbnailUrl = $thumbnail->storeAs("images/thumbnail","{$slug}.{$thumbnail->extension()}");
+
+        if (request()->file('thumbnail')) {
+            \Storage::delete($article->thumbnail);
+            $thumbnailUrl;
+        }else{
+            $thumbnailUrl = $article->thumnail;
+        }
+
+        $attr['category_id'] = request('category_id');
+        $attr['thumbnail'] = $thumbnailUrl;
         $article->update($attr);
         $article->tags()->sync(request('tags'));
 
@@ -122,6 +135,8 @@ class ArticleController extends Controller
     public function destroy(Article $article,$id)
     {
         $articleId = Article::find($id);
+        $a = (request()->$articleId) ?  \Storage::delete($article->thumnail) : null ;
+        dd($a);
         $articleId->delete();
 
         Alert::toast('Artikel berhasil dihapus','success')->timerProgressBar();
